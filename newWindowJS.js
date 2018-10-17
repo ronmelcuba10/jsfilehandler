@@ -7,6 +7,7 @@ var d = function () {
 // for directory structure
 var list = document.getElementsByTagName('section');
 var counter = 0;
+var folder_index = 0;
 var videos = {};
 var names = [];
 var title = document.getElementById('course-title-link').innerHTML;
@@ -17,11 +18,12 @@ for (var i = 0; i < list.length; i++) {
         var ul = list[i].getElementsByClassName('clips');
         var li_list = ul[0].getElementsByClassName('side-menu-clip-title');
         if (li_list.length > 1) {
+            folder_index ++;
             console.log(` --- ${header_text} ---`);
             for (var y = 0; y < li_list.length; y++) {
                 counter += 1;
                 var videoname = li_list[y].innerText;
-                console.log(`${counter} - ${videoname}`);
+                console.log(`${counter} - ${videoname}%%%${folder_index}`);
                 names.push(`${counter} - ${videoname}`);
                 // Store the videos's: name, element and Url 
                 // future ...
