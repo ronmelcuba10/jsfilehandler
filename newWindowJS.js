@@ -1,10 +1,10 @@
 
 var d = function () {
     var uri = document.getElementsByTagName('video')[0].src
-    window.open(uri,'','width=200,height=100');
+    window.open(uri, '', 'width=200,height=100');
 }
 
-
+// for directory structure
 var list = document.getElementsByTagName('section');
 var counter = 0;
 var videos = {};
