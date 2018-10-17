@@ -19,6 +19,7 @@ def myfunction():
     if (os.path.isdir(tut_folder)):
         os.chdir(tut_folder)
 
+    # if less than 100 add one or two leading zeros
     leading_zeroes = len( str( len(lines) ) )
     i = 0
 
@@ -27,6 +28,7 @@ def myfunction():
         s = ' --- '
         if s in line:
             i += 1
+            # numbers leading with 0s to guarantee a sorted list
             os.mkdir(f'{str(i).zfill(2)} -- {line[line.index(s) + len(s) :-5]}')
 
 
