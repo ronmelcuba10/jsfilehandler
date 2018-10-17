@@ -27,9 +27,15 @@ def myfunction():
     for line in lines:
         s = ' --- '
         if s in line:
-            i += 1
             # numbers leading with 0s to guarantee a sorted list
-            os.mkdir(f'{str(i).zfill(2)} -- {line[line.index(s) + len(s) :-5]}')
+            i += 1
+            folder_name = f'{str(i).zfill(2)} -- {line[line.index(s) + len(s) :-5]}'
+
+            if not os.path.exists(folder_name):
+                os.mkdir(folder_name)
+
+    files_list = [each for each in os.listdir(dir_path) if each.endswith('.mp4')]
+    print(files_list)
 
 
 if __name__ == '__main__':
