@@ -10,19 +10,20 @@ def myfunction():
     lines = tut_file.readlines()
 
     # make main folder
-    tut_name = lines[0].strip().replace(':', ' ')
+    tut_name = lines[0].strip().replace(':', ' ').replace('#####','')
     tut_folder = os.path.join(dir_path, tut_name)
     if not os.path.exists(tut_folder):
         os.mkdir(tut_name)
 
-    # movr to the new folder
+    # move to the new folder
     if (os.path.isdir(tut_folder)):
         os.chdir(tut_folder)
 
     # create child folders
     for line in lines:
-        if '---' in line:
-            os.mkdir(line[5:-5])
+        str = ' --- '
+        if str in line:
+            os.mkdir(line[line.index(str) + len(str) :-5])
 
 
 if __name__ == '__main__':

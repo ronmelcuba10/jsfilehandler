@@ -9,6 +9,8 @@ var list = document.getElementsByTagName('section');
 var counter = 0;
 var videos = {};
 var names = [];
+var title = document.getElementById('course-title-link').innerHTML;
+console.log(`#####${title}`);
 for (var i = 0; i < list.length; i++) {
     if (list[i].className.match(/\bmodule\b/)) {
         var header_text = list[i].getElementsByTagName('h2')[0].innerText;
