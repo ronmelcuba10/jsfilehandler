@@ -19,11 +19,15 @@ def myfunction():
     if (os.path.isdir(tut_folder)):
         os.chdir(tut_folder)
 
+    leading_zeroes = len( str( len(lines) ) )
+    i = 0
+
     # create child folders
     for line in lines:
-        str = ' --- '
-        if str in line:
-            os.mkdir(line[line.index(str) + len(str) :-5])
+        s = ' --- '
+        if s in line:
+            i += 1
+            os.mkdir(f'{str(i).zfill(2)} -- {line[line.index(s) + len(s) :-5]}')
 
 
 if __name__ == '__main__':
