@@ -36,22 +36,24 @@ def myfunction():
                 os.mkdir(folder_name)
         else:
             if line.strip() and '%%%' in line:
-                files_in_folder[line.split(' ')[1]] = str(i).zfill(leading_zeroes)
+                files_in_folder[line.split(' ')[1]] = [folder_name, line.split(' ', 1)[1].split('%%%')[0]]
 
-    files_list = [each for each in os.listdir(dir_path) if each.endswith('.mp4')]
-    print(files_list)
-    print(files_in_folder)
+    for k,v in files_in_folder.items():
+        print(f' key {k} value {v}')
 
-    """
     #move the files to their folder
-    try:
-        for f in files_list:
-            new_file_name = os.path.join()
+    files_list = [each for each in os.listdir(dir_path) if each.endswith('.mp4')]
+    
+    # change back to upper folder
+    os.chdir('..')
+
+
+    for f in files_list:
+        key = f.split('.')[0]
+        if key in files_in_folder:
+            new_file_name = os.path.join(tut_folder, files_in_folder[key][0], files_in_folder[key][1] + '.mp4')
+            print(new_file_name)
             shutil.move(f, new_file_name)
-    except:
-        msg = msgs.MSG_550
-    return msg
-    """
 
 
 if __name__ == '__main__':
