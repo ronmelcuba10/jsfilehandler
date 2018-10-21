@@ -56,7 +56,7 @@ def myfunction():
     # change back to upper folder
     os.chdir('..')
 
-
+    # moving files to their subfolders by its names
     for f in files_list:
         key = f.split('.')[0]
         if key in files_in_folder:
