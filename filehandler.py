@@ -9,9 +9,15 @@ TITLE_DESIGNATOR = '#####'
 NOTHING = ''
 SPACE = ' '
 COLON = ':'
+INTERROGATION = '?'
+SLASH = '/'
 THREE_DASHES = ' --- '
 FOLDER_INDEX_SEPARATOR = '%%%'
 EXTENSION = '.mp4'
+
+def cleaName(name):
+    return name.replace(COLON, SPACE).replace(INTERROGATION, NOTHING).replace(SLASH, NOTHING)
+
 
 def myfunction():
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -21,7 +27,7 @@ def myfunction():
     lines = tut_file.readlines()
 
     # make main folder
-    tut_name = lines[0].strip().replace(COLON, SPACE).replace( TITLE_DESIGNATOR, NOTHING)
+    tut_name = cleaName(lines[0].strip()).replace( TITLE_DESIGNATOR, NOTHING)
     tut_folder = os.path.join(dir_path, tut_name)
     if not os.path.exists(tut_folder):
         os.mkdir(tut_name)
@@ -45,7 +51,7 @@ def myfunction():
                 os.mkdir(folder_name)
         else:
             if line.strip() and FOLDER_INDEX_SEPARATOR in line:
-                files_in_folder[line.split(SPACE)[1]] = [folder_name, line.split(' ', 1)[1].split(FOLDER_INDEX_SEPARATOR)[0]]
+                files_in_folder[line.split(SPACE)[1]] = [cleaName(folder_name), cleaName(line).split(' ', 1)[1].split(FOLDER_INDEX_SEPARATOR)[0]]
 
     for k,v in files_in_folder.items():
         print(f' key {k} value {v}')
@@ -56,11 +62,15 @@ def myfunction():
     # change back to upper folder
     os.chdir('..')
 
+    print(files_list)
+
     # moving files to their subfolders by its names
     for f in files_list:
         key = f.split('.')[0]
-        if key in files_in_folder:
-            new_file_name = os.path.join(tut_folder, files_in_folder[key][0], files_in_folder[key][1] + EXTENSION)
+        idx = f[f.find('(')+1 : f.find(')')]
+        if idx in files_in_folder:
+        #if '(' + key + ')' in files_in_folder:
+            new_file_name = os.path.join(tut_folder.strip(), files_in_folder[idx][0].strip(), files_in_folder[idx][1].strip() + EXTENSION)
             print(new_file_name)
             shutil.move(f, new_file_name)
 
