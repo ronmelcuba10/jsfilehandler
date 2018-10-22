@@ -48,4 +48,3 @@ for (const [key, value] of Object.entries(videos)) {
     //window.open(value['url'], '', 'width=200,height=100');
 }
 */
-
