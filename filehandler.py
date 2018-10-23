@@ -13,7 +13,7 @@ INTERROGATION = '?'
 SLASH = '/'
 THREE_DASHES = ' --- '
 FOLDER_INDEX_SEPARATOR = '%%%'
-EXTENSION = '.txt'
+EXTENSION = '.mp4'
 
 def clearName(name):
     return name.replace(COLON, SPACE).replace(INTERROGATION, NOTHING).replace(SLASH, NOTHING)
@@ -80,7 +80,7 @@ def myfunction():
         if THREE_DASHES in line:
             # numbers leading with 0s to guarantee a sorted list
             i += 1
-            folder_name = f'{str(i).zfill(leading_zeroes)} -- {line[line.index(THREE_DASHES) + len(THREE_DASHES) :-5]}'
+            folder_name = clearName(f'{str(i).zfill(leading_zeroes)} -- {line[line.index(THREE_DASHES) + len(THREE_DASHES) :-5]}')
             if not os.path.exists(folder_name):
                 os.mkdir(folder_name)
         else:
@@ -93,6 +93,12 @@ def myfunction():
 
     #move the files to their folder
     files_list = [each for each in os.listdir(dir_path) if each.endswith(EXTENSION)]
+
+    
+
+    if not files_list:
+        print('No files to move')
+        return
     
     # change back to upper folder
     os.chdir('..')
