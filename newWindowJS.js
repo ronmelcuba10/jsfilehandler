@@ -1,6 +1,21 @@
 var d = function () {
+    var allTitleContainers = document.getElementsByClassName('d-flex ps-color-bg-gray-05 py-sm pr-lg mx-0 clip-bg');
+    var title = document.getElementsByClassName('selected ps-color-orange')[0];
+    var i = 0;
+    var found = false;
+    while (i < allTitleContainers.length && !found )
+    {
+        if (allTitleContainers[i] == title)
+        {
+            found = true;
+        }
+        i++;
+    }
+
+    title = title.getElementsByTagName('h3')[0].innerHTML;
+    console.log(`${title} (${i+1})`);
     var uri = document.getElementsByTagName('video')[0].src
-    window.open(uri, '', 'width=200,height=100');
+    window.open(uri, title, 'width=200,height=100');
 }
 
 // for directory structure
